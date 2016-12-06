@@ -14,6 +14,14 @@ import {
 } from 'jupyterlab/lib/docregistry';
 
 import {
+  toArray
+} from 'phosphor/lib/algorithm/iteration';
+
+import {
+  findLastIndex
+} from 'phosphor/lib/algorithm/searching';
+
+import {
   JSONRenderer
 } from './renderer';
 
@@ -24,23 +32,29 @@ import {
 import './index.css';
 
 /**
- * The list of file extensions for json.
+ * The file extensions associated with JSON.
  */
 const EXTENSIONS = ['.json'];
 const DEFAULT_EXTENSIONS = ['.json'];
 
 /**
- * Activate the table widget extension.
+ * Activate the extension.
  */
 function activateJSONPlugin(app: JupyterLab, rendermime: IRenderMime, registry: IDocumentRegistry): void {
 
   /**
-   * Add the MIME type based renderers at the beginning of the renderers.
+   * Set the index of the renderer.
+   * In this case, 'application/json' should yield to any other 'application/*+json' mime types
    */
-  rendermime.addRenderer('application/json', new JSONRenderer(), 0);
+  const index = findLastIndex(toArray(rendermime.mimetypes()), mimetype => mimetype.endsWith('+json')) + 1;
 
   /**
-   * Add file handler for standalone Vega JSON files.
+   * Add the renderer to the list of renderers.
+   */
+  rendermime.addRenderer('application/json', new JSONRenderer(), index);
+
+  /**
+   * Add file handler for JSON files.
    */
   let options = {
     fileExtensions: EXTENSIONS,

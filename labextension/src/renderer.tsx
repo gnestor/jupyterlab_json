@@ -30,7 +30,7 @@ const WIDGET_CLASS = 'jp-RenderedJSON';
 
 
 /**
- * A widget for displaying HTML and rendering math.
+ * A widget for rendering JSON.
  */
 export
 class RenderedJSON extends Widget {
