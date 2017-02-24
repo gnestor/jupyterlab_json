@@ -31,12 +31,11 @@ function activatePlugin(app, rendermime, registry) {
     index
   );
 
-  if ('json') {
-    /**
-     * Set the extensions associated with JSON.
-     */
-    const EXTENSIONS = [ '.json' ];
-    const DEFAULT_EXTENSIONS = [ '.json' ];
+  /**
+   * Set the extensions associated with JSON.
+   */
+  const EXTENSIONS = [ '.json', '.ipynb' ];
+  const DEFAULT_EXTENSIONS = [ '.json' ];
 
     /**
      * Add file handler for json files.
@@ -51,15 +50,12 @@ function activatePlugin(app, rendermime, registry) {
       canStartKernel: false
     };
 
-    registry.addWidgetFactory(new DocWidgetFactory(options));
-  }
+  registry.addWidgetFactory(new DocWidgetFactory(options));
 }
 
 const Plugin = {
   id: 'jupyter.extensions.JSON',
-  requires: 'json'
-    ? [ IRenderMime, IDocumentRegistry ]
-    : [ IRenderMime ],
+  requires: [ IRenderMime, IDocumentRegistry ],
   activate: activatePlugin,
   autoStart: true
 };
