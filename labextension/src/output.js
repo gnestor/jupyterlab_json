@@ -37,6 +37,7 @@ export class OutputWidget extends Widget {
    * A render function given the widget's DOM node.
    */
   _render() {
+    let json = this._source;
     ReactDOM.render(
       <JSONComponent 
         data={this._data} 
@@ -52,7 +53,7 @@ export class OutputRenderer {
   /**
    * The mime types this OutputRenderer accepts.
    */
-  mimeTypes = [ 'application/json' ];
+  mimeTypes = ['application/json'];
 
   /**
    * Whether the renderer can render given the render options.
