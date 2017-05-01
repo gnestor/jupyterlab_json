@@ -6,7 +6,7 @@ A JupyterLab and Jupyter Notebook extension for rendering JSON
 
 ## Prerequisites
 
-* JupyterLab ^0.18.0 and/or Notebook >=4.3.0
+* JupyterLab ^0.20.0 and/or Notebook >=4.3.0
 
 ## Usage
 
@@ -32,12 +32,11 @@ To render a `.json` file as a tree, simply open it:
 ## Install
 
 ```bash
-pip install jupyterlab_json
 # For JupyterLab
-jupyter labextension install --symlink --py --sys-prefix jupyterlab_json
-jupyter labextension enable --py --sys-prefix jupyterlab_json
+jupyter labextension install jupyterlab_json
 # For Notebook
-jupyter nbextension install --symlink --py --sys-prefix jupyterlab_json
+pip install jupyterlab_json
+jupyter nbextension install --py --sys-prefix jupyterlab_json
 jupyter nbextension enable --py --sys-prefix jupyterlab_json
 ```
 
@@ -46,8 +45,8 @@ jupyter nbextension enable --py --sys-prefix jupyterlab_json
 ```bash
 pip install -e .
 # For JupyterLab
-jupyter labextension install --symlink --py --sys-prefix jupyterlab_json
-jupyter labextension enable --py --sys-prefix jupyterlab_json
+cd labextension
+jupyter labextension link .
 # For Notebook
 jupyter nbextension install --symlink --py --sys-prefix jupyterlab_json
 jupyter nbextension enable --py --sys-prefix jupyterlab_json
